@@ -409,9 +409,9 @@ function dangxuat() {
 
   // Lấy thông tin đã lưu
 // Kiểm tra nếu có thông tin đăng nhập lưu trong localStorage thì hiển thị thông tin đó
-let loggedInUser = localStorage.getItem("loggedInUser");
-let logoutedNavItem = document.getElementById("logouted");
-let registerNavItem = document.getElementById("register");
+// let loggedInUser = localStorage.getItem("loggedInUser");
+// let logoutedNavItem = document.getElementById("logouted");
+// let registerNavItem = document.getElementById("register");
  let lsmh=document.getElementById("lsmh")
 let headerRight = document.querySelector('.header-right');
   
@@ -494,9 +494,9 @@ function dangxuat() {
 
 // Lấy thông tin đã lưu
 // Kiểm tra nếu có thông tin đăng nhập lưu trong localStorage thì hiển thị thông tin đó
-let loggedInUser = localStorage.getItem("loggedInUser");
-let logoutedNavItem = document.getElementById("logouted");
-let registerNavItem = document.getElementById("register");
+var loggedInUser = localStorage.getItem("loggedInUser");
+var logoutedNavItem = document.getElementById("logouted");
+var registerNavItem = document.getElementById("register");
 
 
 if (loggedInUser) {
