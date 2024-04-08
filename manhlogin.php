@@ -125,11 +125,12 @@
 									</p>
 								</div> -->
                 </div>
-                <form action="#" class="signin-form form-login-manh">
+                <form action="test.php" class="signin-form form-login-manh">
                   <div class="form-group mb-3">
                     <label class="label" for="name">Tên người dùng</label>
                     <input
                       id="username"
+                      name="username"
                       type="text"
                       class="form-control"
                       placeholder="Nhập tên"
@@ -140,6 +141,7 @@
                     <label class="label" for="password">Mật khẩu</label>
                     <input
                       id="password"
+                      name="password"
                       type="password"
                       class="form-control"
                       placeholder="Nhập mật khẩu"
