@@ -12,6 +12,7 @@
     type="image/x-icon"
     href="./asset/favicon/icondongho (2).png"
   />
+  <link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.css">
     <link
       href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap"
       rel="stylesheet"
@@ -32,61 +33,103 @@
     <link rel="stylesheet" href="asset/khang.css" />
   </head>
   <body>
-	<section class="myheader ">
-		<nav class="navbar bg-light navbar-expand-lg ftco_navbar ftco-navbar-light"  id="ftco-navbar">
-		  <div class="container">
-			<a class="navbar-brand-manh" href="./index.php" >
-			  KVM Watches
-			</a>
-		
-			<div class="collapse navbar-collapse" id="ftco-nav">
-			  <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
-				<li class="nav-item">
-				  <a href="./index.php" class="nav-link active" aria-current="page">TRANG CHỦ</a>
-				</li>
-				<li class="nav-item dropdown">
-				  <a href="" 
-					 class="nav-link dropdown-toggle" 
-					 id="navbarAdvancedDropdown" 
-					 data-bs-toggle="dropdown" 
-					 role="button" 
-					 aria-expanded="false"
-					 aria-haspopup="true">sản phẩm</a>
-				  <ul class="dropdown-menu" aria-labelledby="navbarAdvancedDropdown">
-					<li>
-					  <a href="./dongHoNam.php" class="dropdown-item" style="color: #ffad33; text-align: left;">Đồng hồ nam</a>
-					</li>
-					<li>
-					  <a href="./dongHoNu.php" class="dropdown-item" style="color: #ffad33;text-align: left;">Đồng hồ nữ</a>
-					</li>
-					<li>
-					  <a href="#" class="dropdown-item" style="color: #ffad33;text-align: left;">Bộ sưu tập mới</a>
-					</li>
-				  </ul>
-				</li>
-				<li class="nav-item">
-				  <a href="./about.php" class="nav-link">Về chúng tôi</a>
-				</li>
-				<li class="nav-item">
-				  <a href="./contact.php" class="nav-link">Liên hệ</a>
-				</li>
-			  </ul>
-			  </div>
-			  <form>
-				
-			  </form>
-				<div class="collapse navbar-collapse ftco-nav-right" id="ftco-nav">
-				 
-				 
-				</div>				
-			  </form>
-			</div>
-		</nav>
-	  </section>
-
-
-
-	  
+	<header>
+      <section class="myheader">
+        <nav class="navbar bg-light navbar-expand-lg ftco_navbar ftco-navbar-light"  id="ftco-navbar">
+          <div class="container">
+            <a class="navbar-brand-manh" href="./index.php" >
+              KVM Watches
+            </a>
+        
+            <div class="collapse navbar-collapse" id="ftco-nav">
+              <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
+                <li class="nav-item">
+                  <a href="./index.php" class="nav-link active" aria-current="page" style="font-size: 18px;
+                  font-weight: 600;">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a href="" 
+                     class="nav-link dropdown-toggle" 
+                     id="navbarAdvancedDropdown" 
+                     data-bs-toggle="dropdown" 
+                     role="button" 
+                     aria-expanded="false"
+                     aria-haspopup="true" style="    font-size: 18px;
+                     font-weight: 600;">sản phẩm</a>
+                  <ul class="dropdown-menu header-dr" aria-labelledby="navbarAdvancedDropdown">
+                    <li>
+                      <a href="./dongHoNam.php" class="dropdown-item" style="color: #ffad33;text-align: left;">Đồng hồ nam</a>
+                    </li>
+                    <li>
+                      <a href="./dongHoNu.php" class="dropdown-item" style="color: #ffad33;text-align: left;">Đồng hồ nữ</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item" style="color: #ffad33;text-align: left;">Bộ sưu tập mới</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="./about.php" class="nav-link" style="    font-size: 18px;
+                  font-weight: 600;">Về chúng tôi</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./contact.php" class="nav-link" style="    font-size: 18px;
+                  font-weight: 600;">Liên hệ</a>
+                </li>
+               
+              </ul>
+              </div>
+              <div id="right">
+                <form class="example" action="dongHoNam.php" >
+                  <input type="text" placeholder="Search.." name="search2">
+                  <button type="submit" style="background-color: #ffad33;"><i class="fa fa-search"></i></button>
+                  </form>
+              </div>
+              
+                <div class="collapse navbar-collapse ftco-nav-right" id="ftco-nav" style="margin-left: -65px;">
+                  <ul class="navbar-nav ml-auto header-right">
+                    <li class="nav-item" style="display: none;" id="lsmh">
+                      <a href="orderHistory.php" class="nav-link" style="font-size: 15px !important; padding-left: 0px;
+                      padding-right: 0px;
+                      padding-bottom: 0px;
+                      padding-top: 9px;width: 107px;font-weight: 600;" 
+                        >Lịch Sử Mua Hàng</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="cart.php" class="nav-link"
+                        ><i class="fa-solid fa-cart-shopping"></i
+                      ></a>
+                    </li>
+                    <li class="nav-item islogined" id="logined">
+                      <a href="./manhlogin.php" class="nav-link" style="font-size: 15px !important; padding-left: 0px;
+                      padding-right: 0px;
+                      padding-bottom: 0px;
+                      padding-top: 20px;width: 107px;font-weight: 600;" 
+                        >Đăng nhập</a>
+                    </li>
+                    <li class="nav-item" style="height: 2px;width: 1px; color: #010409;">
+                    
+                    </li>
+                    <li class="nav-item islogined" id="logouted" onclick="dangxuat()">
+                      <a href="#" class="nav-link" onclick="dangxuat()"
+                        ><i class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+                      <li class="nav-item" id="register">
+                        <a href="./manhregister.php" class="nav-link"
+                        style="font-size: 15px !important; padding-left: 0px;
+                        padding-right: 0px;
+                        padding-bottom: 0px;
+                        padding-top: 20px;width: 107px;font-weight: 600;"  >Đăng ký</a>
+                      </li>
+                    
+                  </ul>
+                  <div id="loggedInUserInfo" style="font-size: 20px;"></div>
+                </div>
+              </form>
+            </div>
+        </nav>
+      </section>
+     </header>
     <section class="ftco-section">
       <div class="container">
         <div class="row justify-content-center">
@@ -284,6 +327,73 @@
 
     
       console.log("")
+    </script>
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          document.getElementById("myBtn").style.display = "block";
+        } else {
+          document.getElementById("myBtn").style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+
+
+function dangxuat() {
+    localStorage.clear(); // Xóa toàn bộ dữ liệu trong localStorage
+    let logoutedNavItem = document.getElementById("logouted");
+    let registerNavItem = document.getElementById("register");
+    let loginedNavItem = document.getElementById("logined");
+    let loggedInUserInfo = document.getElementById("loggedInUserInfo");
+    logoutedNavItem.style.display="none";
+    loggedInUserInfo.style.display="none";
+    registerNavItem.style.display="inline";
+    loginedNavItem.style.display="inline";
+    alert("Bạn đã đăng xuất");
+    console.log("đã clear ");
+}
+
+  // Lấy thông tin đã lưu
+// Kiểm tra nếu có thông tin đăng nhập lưu trong localStorage thì hiển thị thông tin đó
+let loggedInUser = localStorage.getItem("loggedInUser");
+let logoutedNavItem = document.getElementById("logouted");
+let registerNavItem = document.getElementById("register");
+ let lsmh=document.getElementById("lsmh")
+let headerRight = document.querySelector('.header-right');
+  
+if (loggedInUser) {
+   let loggedInUserInfo = document.getElementById("loggedInUserInfo");
+    loggedInUserInfo.textContent = "Chào " + loggedInUser + "!";
+
+    // Ẩn nút đăng nhập và hiển thị thông tin người dùng đã đăng nhập
+    let loginedNavItem = document.getElementById("logined");
+    logoutedNavItem.style.display="inline";
+    loginedNavItem.style.display = "none";
+    registerNavItem.style.display="none";
+    headerRight.classList.add('loggedin');
+    lsmh.style.display="inline"
+   
+} else {
+    // Nếu không có thông tin đăng nhập thì hiển thị nút đăng nhập và ẩn thông tin người dùng
+    let loggedInUserInfo = document.getElementById("loggedInUserInfo");
+    loggedInUserInfo.style.display = "none";
+    logoutedNavItem.style.display="none";
+}
+
+  
     </script>
   </body>
 </html>
