@@ -24,26 +24,34 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form onsubmit="login()">
+				<form action="php_admin/xuly.php" method="post" onsubmit="return valid()">
+
+
+					<?php
+						if(isset($_GET['error']))
+						{
+							echo '<div class="alert alert-danger" role="alert">Username or Password is incorrect!</div>';
+						}
+					?>
 
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input id="username" type="text" class="form-control" placeholder="Enter Admin Account">
+						<input name="username" id="username" type="text" class="form-control" placeholder="Enter Admin Account">
 					</div>
 
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input id="password" type="password" class="form-control" placeholder="Enter Password">
+						<input name="password" id="password" type="password" class="form-control" placeholder="Enter Password">
 					</div>
 
 
 					<div class="action">
-						<button type="button" value="Cancel" onclick="window.location.assign('index.php');" class="btn float-right login_btn">Cancel</button>
-						<button type="submit" value="Login" class="btn float-right login_btn" >Login</button>
+						<!-- <button type="button" value="Cancel" onclick="window.location.assign('index.php');" class="btn float-right login_btn">Cancel</button> -->
+						<button name="submit" type="submit" value="Login" class="btn float-right login_btn" >Login</button>
 					</div>
 
 				</form>
@@ -52,8 +60,6 @@
 		</div>
 	</div>
 </div>
-
-<script src="js/main.js"></script>
-
+<script src="js/ad_main.js"></script>
 </body>
 </html>

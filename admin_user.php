@@ -67,7 +67,7 @@
       <div class="profile-details">
         <img src="images/profile.jpg" alt="">
         <span class="admin_name">Khang</span>
-        <i class='bx bx-chevron-down'></i>
+        <i class='bx bx-log-out'></i>
       </div>
     </nav>
 
@@ -80,7 +80,7 @@
           </div>
           <div class="action">
             <div class="filter-list btn">
-              <i class="bx bx-filter"></i>
+              <!-- <i class="bx bx-filter"></i> -->
             </div>
           </div>
         </div>
@@ -297,6 +297,9 @@
   </div>
 
   <script>
+    function logout() {
+      alert("Bạn đã đăng xuất khỏi hệ thống");
+    }
     // expand and shrink sidebar
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
