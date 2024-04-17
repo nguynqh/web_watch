@@ -1116,3 +1116,11 @@ table tr {
   border: none;
   border-radius: 10px;
 }
+
+
+
+
+/* add user form */
+.box.user-list:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow effect on hover */
+}

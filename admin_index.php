@@ -1,3 +1,7 @@
+<?php
+  session_start()
+?>
+
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
@@ -71,7 +75,7 @@
       <!---->
       <div class="profile-details">
         <img src="images/profile.jpg" alt="">
-        <span class="admin_name">Khang</span>
+        <span class="admin_name"><?php echo $_SESSION['username'] ?></span>
         <i class='bx bx-chevron-down'></i>
       </div>
     </nav>
