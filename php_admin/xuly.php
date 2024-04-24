@@ -12,8 +12,6 @@
         {
             $row = $result->fetch_array();
 
-            //$row[0] ~ $row['username']
-            //$_SESSION['username'] = $username;
             if ($row['password'] == $password)
             {
                 // login đúng
@@ -23,7 +21,7 @@
                 
                 session_start();
                 $_SESSION['username'] = $username;
-                $_SESSIONp['login'] = true;
+                $_SESSION['login_admin'] = true;
 
                 header('Location: ../admin_index.php');
             }

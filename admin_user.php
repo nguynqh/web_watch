@@ -1,5 +1,3 @@
-<?php session_start() ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,50 +12,9 @@
 </head>
 
 <body>
-  <div class="sidebar">
-    <div class="logo-details">
-      <i class='bx bx-alarm'></i>
-      <span class="logo_name">KVM WATCH</span>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="admin_index.php">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Trang chủ</span>
-        </a>
-      </li>
-      <li>
-        <a href="admin_product.php">
-          <i class='bx bx-box'></i>
-          <span class="links_name">Sản phẩm</span>
-        </a>
-      </li>
-      <li>
-        <a href="admin_loaisanpham.php">
-          <i class='bx bxl-product-hunt'></i>
-          <span class="links_name">Loại sản phẩm</span>
-        </a>
-      </li>
-      <li>
-        <a href="admin_order_list.php">
-          <i class='bx bx-list-ul'></i>
-          <span class="links_name">Danh sách đơn hàng</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="active">
-          <i class='bx bx-user'></i>
-          <span class="links_name">Người dùng</span>
-        </a>
-      </li>
-      <li class="log_out">
-        <a href="login1.php">
-          <i class='bx bx-log-out'></i>
-          <span class="links_name">Đăng xuất</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <?php
+    include 'php_admin/side_bar.php';
+  ?>
 
   
   <section class="home-section">
@@ -178,10 +135,23 @@
           <tbody>
             <?php
               require 'php_admin/connect.php';
-              $sql = "SELECT * FROM customer";
+              // so dong 1 trang
+              $rowsPerPage = 5;
+              //trang mac dinh
+              $pageNum = 1;
+              //gan so trang neu co bien page
+              if (isset($_GET['customer_page'])) {
+                $pageNum = $_GET['customer_page'];
+              }
+              // lay chi so cua dong dau tien trong trang
+              $offset = ($pageNum - 1) * $rowsPerPage;
+              //query
+              $sql = "SELECT * FROM customer" . " LIMIT $offset, $rowsPerPage"; 
               $result = $conn->query($sql);
+
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                  // print_r($row);
                   echo "<tr>";
                   echo "<td class='text-left'>";
                   echo "<p>" . $row['CusFullName'] . "</p>";
@@ -205,70 +175,22 @@
                   echo "</tr>";
                 }
               }
+
+              // danh so trang
+              // dem so mau tin co trong CSDL
+              $sql_1   = "SELECT COUNT(*) AS numrows FROM customer";
+              $result = $conn->query($sql_1);
+              $row     = $result->fetch_array();
+              $numrows = $row['numrows'];
+
+              // tinh tong so trang se hien thi
+              $maxPage = ceil($numrows/$rowsPerPage);
+
+              // hien thi lien ket den tung trang
+              $self = "admin_user.php";
+              $nav  = '';
             ?>
-            <!-- <tr>
-              <td class="text-left">
-                <p>Đỗ Anh Triết</p>
-                <p class="email">Anhtrietdrop@gmail.com</p>
-              </td>
-              <td class="text-left">0987654321</td>
-              <td class="text-left">Khách hàng</td>
-              <td><span class="status-unpaid">Offline</span></td>
-              <td>21-11-2023</td>
-              <td>
-                <i id="toggleIcon" class='bx bxs-lock-open' onclick="toggleLock()">
-                  <span class="tooltip" id="locket">lock</span>
-                </i>                
-                <i class='bx bxs-edit-alt'>
-                  <span class="tooltip">edit</span>
-                </i>
-                <i class="bx bx-mail-send">
-                  <span class="tooltip">contact</span>
-                </i>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-left">
-                <p>Nguyễn Ngọc Thúy Vy</p>
-                <p class="email">vydangiu@gmail.com</p>
-              </td>
-              <td class="text-left">0192837433</td>
-              <td class="text-left">Khách hàng thân thiết</td>
-              <td><span class="status-paid">online</span></td>
-              <td>31-07-2023</td>
-              <td>
-                <i id="toggleIcon1" class='bx bxs-lock-open' onclick="toggleLock1()">
-                  <span class="tooltip" id="locket1">lock</span>
-                </i>   
-                <i class='bx bxs-edit-alt'>
-                  <span class="tooltip">edit</span>
-                </i>
-                <i class="bx bx-mail-send">
-                  <span class="tooltip">contact</span>
-                </i>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-left">
-                <p>Nguyễn Ngọc Thúy Vy</p>
-                <p class="email">vydangiu@gmail.com</p>
-              </td>
-              <td class="text-left">0192837433</td>
-              <td class="text-left">Khách hàng thân thiết</td>
-              <td><span class="status-paid">online</span></td>
-              <td>31-07-2023</td>
-              <td>
-                <i id="toggleIcon1" class='bx bxs-lock-open' onclick="toggleLock1()">
-                  <span class="tooltip" id="locket1">lock</span>
-                </i>   
-                <i class='bx bxs-edit-alt'>
-                  <span class="tooltip">edit</span>
-                </i>
-                <i class="bx bx-mail-send">
-                  <span class="tooltip">contact</span>
-                </i>
-              </td>
-            </tr> -->
+            
 
           </tbody>
         </table>
@@ -276,13 +198,59 @@
 
       <div class="footer">
         <div class="page">
+          <?php 
+          // hien thi lien ket den tung trang
+          for($page = 1; $page <= $maxPage; $page++)
+          {
+            if ($page == $pageNum)
+            {
+                $nav .= " <button class=\"current-page\">$page</button> "; // khong can tao link cho trang hien hanh
+            }
+            else
+            {
+                $nav .= " <a href=\"$self?customer_page=$page\"><button>$page</button></a> ";
+            }
+          }
+
+          //hien thi trang dau va trang cuoi
+          if ($pageNum > 1)
+          {
+              $page  = $pageNum - 1;
+              $prev  = " <a href=\"$self?customer_page=$page\"><button><i class='bx bx-left-arrow-alt'></i></button></a> ";
+
+              $first = " <a href=\"$self?customer_page=1\"><button>Trang đầu</button></a> ";
+          }
+          else
+          {
+              $prev  = 'dung in'; // dang o trang 1, khong can in lien ket trang truoc
+              $first = 'dung in'; // va lien ket trang dau
+          }
+
+          if ($pageNum < $maxPage)
+          {
+              $page = $pageNum + 1;
+              $next = " <a href=\"$self?customer_page=$page\"><button><i class='bx bx-right-arrow-alt'></i></button></a> ";
+
+              $last = " <a href=\"$self?customer_page=$maxPage\"><button><span>Trang cuối</span></button></a> ";
+          }
+          else
+          {
+              $next = 'dung in'; // dang o trang cuoi, khong can in lien ket trang ke
+              $last = 'dung in'; // va lien ket trang cuoi
+          }
+
+          // echo "<center>". $first . $prev . $nav . $next . $last . "</center>";
+          echo $first . $prev . $nav . $next . $last;
+          ?>
+          <a href="admin_user.php?customer_page=1"><button style="text-wrap: nowrap;width: 80px;">Trang đầu</button></a>  <a href="admin_user.php?customer_page=1"><button><i class='bx bx-left-arrow-alt'></i></button></a>  <a href="admin_user.php?customer_page=1"><button>1</button></a>  <button class="current-page">2</button>  <a href="admin_user.php?customer_page=3"><button>3</button></a>  <a href="admin_user.php?customer_page=4"><button>4</button></a>  <a href="admin_user.php?customer_page=3"><button><i class='bx bx-right-arrow-alt'></i></button></a>  <a href="admin_user.php?customer_page=4"><button><span>Trang cuối</span></button></a>           
+          <!--
           <button><i class='bx bx-left-arrow-alt'></i></button>
           <button class="current-page">1</button>
-          <button>2</button>
+          <a href=""><button>2</button></a>
           <button>3</button>
           <button>4</button>
           <button>5</button>
-          <button><i class='bx bx-right-arrow-alt'></i></button>
+          <button><i class='bx bx-right-arrow-alt'></i></button> -->
         </div>
       </div>
 
@@ -363,9 +331,6 @@
   </div>
 
   <script>
-    function logout() {
-      alert("Bạn đã đăng xuất khỏi hệ thống");
-    }
     // expand and shrink sidebar
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
