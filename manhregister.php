@@ -119,7 +119,7 @@
                 <div class="login-wrap">
                     <div class="img" style="background-image: url(signup-form-18/images/bg.jpg);"></div>
                     <h3 class="text-center mb-4">TẠO TÀI KHOẢN</h3>
-    <form action="#" class="signup-form" onsubmit="return validateForm();">
+    <form action="php_users/xuly.php" method="post" class="signup-form" onsubmit="return validateForm();">
 		<label class="field__label" for="register-name">*Họ và tên: </label>
          <div class="form-group mb-3"><input type="text" class="form-control" placeholder="Nhập họ và tên tại đây" id="register-name" name="register-name"></div>
         <label class="field__label" for="Email"> *Email: </label>
@@ -128,6 +128,35 @@
          <div class="form-group mb-3"><input type="text" class="form-control" placeholder="Nhập số điện thoại tại đây" id="PhoneNumber" name="PhoneNumber"></div>
         <label class="field__label" for="Address"> Địa chỉ: </label>
          <div class="form-group mb-3"><input type="text" class="form-control" placeholder="Địa chỉ" id="Address" name="Address"></div>
+         <div class="row">
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label class="form-label" for="City">Thành Phố: </label>
+            <select class="form-select custom-select" id="city" aria-label=".form-select">
+                <option value="" selected>Chọn Tỉnh Thành</option>
+                <!-- Các option của tỉnh/thành phố -->
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label class="form-label" for="District">Quận/Huyện: </label>
+            <select class="form-select custom-select" id="district" aria-label=".form-select">
+                <option value="" selected>Chọn Quận Huyện</option>
+                <!-- Các option của quận/huyện -->
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label class="form-label" for="Ward">Phường/Xã: </label>
+            <select class="form-select custom-select" id="ward" aria-label=".form-select">
+                <option value="" selected>Chọn Phường Xã</option>
+                <!-- Các option của phường/xã -->
+            </select>
+        </div>
+    </div>
+</div>
     <div class="row">
     <div class="col-md-6">
         <label class="field__label" for="Password"> *Mật khẩu: </label>
@@ -185,27 +214,58 @@
 <div class="footer-end" >
     <p>Copyright by KVM WATCHES® </p> 
 </div>
-<!-- <script>
-    document.getElementById("myButton").addEventListener("click", function(e) {
-        alert("Đăng ký thành công");
-        document.getElementById("register-name").value = "";
-        document.getElementById("Email").value = "";
-        document.getElementById("PhoneNumber").value = "";
-        document.getElementById("Address").value = "";
-        document.getElementById("password-field").value = "";
-        document.getElementsByClassName('password-field1')[0].value = "";
-        setTimeout(function() {
-            window.location.href = "manhlogin.php";
-        }, 500);
-    });
-</script> -->
+
+
 <script src="lib/jquery-2.0.0.min.js"></script>
     <script src="lib/arcontactus.js"></script>
     <script src="lib/script.js"></script>
     <script src="./bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="./lib/slick.js"></script>
     <script src="./lib/slider-home.js"></script>
-	<script src="./js/CheckRegister.js"></script>
+	  <script src="./js/CheckRegister.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+	var citis = document.getElementById("city");
+  var districts = document.getElementById("district");
+  var wards = document.getElementById("ward");
+  var Parameter = {
+  url: "json/data.json", 
+  method: "GET", 
+  responseType: "application/json", 
+  };
+  var promise = axios(Parameter);
+  promise.then(function (result) {
+  renderCity(result.data);
+});
+
+function renderCity(data) {
+  for (const x of data) {
+    citis.options[citis.options.length] = new Option(x.Name, x.Id);
+  }
+  citis.onchange = function () {
+    district.length = 1;
+    ward.length = 1;
+    if(this.value != ""){
+      const result = data.filter(n => n.Id === this.value);
+
+      for (const k of result[0].Districts) {
+        district.options[district.options.length] = new Option(k.Name, k.Id);
+      }
+    }
+  };
+  district.onchange = function () {
+    ward.length = 1;
+    const dataCity = data.filter((n) => n.Id === citis.value);
+    if (this.value != "") {
+      const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+      for (const w of dataWards) {
+        wards.options[wards.options.length] = new Option(w.Name, w.Id);
+      }
+    }
+  };
+}
+	</script>
     <script>
       // When the user scrolls down 20px from the top of the document, show the button
       window.onscroll = function () {
